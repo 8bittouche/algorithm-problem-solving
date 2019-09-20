@@ -1,23 +1,27 @@
 #include <string>
 #include <vector>
-#include <stdio.h>
+
 using namespace std;
 
-int answer = 0;
-
-void dfs(int depth, int sum, vector<int> numbers, int target, int size){
-    if(depth == size){
-        if(sum == target){
-            answer++;
-        }
-        return;
+int total=0;
+int v[201];
+void dfs(int x, vector<vector<int>> &computers){
+    v[x] = 1;
+    for(int i=0; i<total; ++i){
+        if(computers[x][i]==1 && v[i]==0){
+            dfs(i, computers);
+        }    
     }
-    dfs(depth+1, sum+numbers[depth], numbers, target, size);
-    dfs(depth+1, sum-numbers[depth], numbers, target, size);
 }
 
-int solution(vector<int> numbers, int target) {
-    dfs(0, 0, numbers, target, numbers.size());
-    
+int solution(int n, vector<vector<int>> computers) {
+    int answer = 0;
+    total = n;
+    for(int i=0; i<total; ++i){
+        if(v[i]==0){
+            dfs(i, computers);
+            answer++;
+        }
+    }
     return answer;
 }
