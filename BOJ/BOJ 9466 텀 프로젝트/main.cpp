@@ -24,15 +24,13 @@ int main() {
 	scanf("%d", &t);
 	
 	while (t--) {
-		memset(a, 0, sizeof(a));
-		memset(order, 0, sizeof(order));
-		memset(startNode, 0, sizeof(startNode));
-
 		int n, ans=0;
 		scanf("%d", &n);
 		
 		for (int i = 1; i <= n; ++i) {
 			scanf(" %d", &a[i]);
+			order[i] = 0;
+			startNode[i] = 0;
 		}
 
 		for (int i = 1; i <= n; ++i) {
